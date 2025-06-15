@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mermaid Homes - Your Dream Coastal Living</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Open Sans font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif; /* Open Sans font */
+            background-color: #F8F2DE; /* Light background color */
+        }
+        .hero-background {
+            /* Using the accent color for a light, warm placeholder background */
+            background-image: url('https://placehold.co/1920x800/ECDCBF/FFFFFF?text=Coastal+View');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+        }
+        /* Custom styles for gradients and button effects using the new color palette */
+        .mermaid-gradient-text {
+            background: linear-gradient(90deg, #ECDCBF, #B99B77); /* Warm gradient for text */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .mermaid-button-gradient {
+            background: linear-gradient(45deg, #ECDCBF, #B99B77); /* Warm button gradient */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .mermaid-button-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(185, 155, 119, 0.4); /* Shadow based on warm accent color */
+        }
+        /* Adjusted header styling to integrate the main_head look */
+        .main-header-bar {
+            background-color: #5D4037; /* Darker bar color from footer */
+            padding-top: 1rem; /* py-4 */
+            padding-bottom: 1rem; /* py-4 */
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 0.75rem; /* rounded-b-xl */
+            border-bottom-right-radius: 0.75rem; /* rounded-b-xl */
+        }
+        .main-nav-container {
+            background-color: white; /* White background for the inner nav part */
+            padding-left: 1.5rem; /* px-6 */
+            padding-right: 1.5rem; /* px-6 */
+            padding-top: 0.75rem; /* py-3 */
+            padding-bottom: 0.75rem; /* py-3 */
+            border-radius: 0.75rem; /* rounded-xl for content inside the dark bar */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section (Inspired by provided snippet structure) -->
+    <header class="main-header-bar">
+        <div class="container mx-auto main-nav-container flex justify-between items-center px-6 md:px-12">
+            <!-- Logo and Tagline -->
+            <div class="flex flex-col items-start">
+                <a href="#hero" class="text-3xl font-extrabold mermaid-gradient-text leading-none block">
+                    <!-- Using the uploaded image for the logo -->
+                    <img src="https://storage.googleapis.com/gemini-generated-assets/uploaded_images/Textt1.png-8fae39b6-ac03-43e6-a295-37186c5eed16" alt="Mermaid Homes Logo" class="h-8 md:h-10 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/150x40/5D4037/FFFFFF?text=MERMAID+HOMES';">
+                </a>
+                <span class="text-xs md:text-sm text-gray-500 font-semibold tracking-widest uppercase mt-1">FIND YOUR OWN</span>
+            </div>
+
+            <!-- Main Navigation (Desktop) -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#hero" class="text-gray-600 hover:text-[#B99B77] font-semibold transition duration-300">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-[#B99B77] font-semibold transition duration-300">About Us</a>
+                <a href="#properties" class="text-gray-600 hover:text-[#B99B77] font-semibold transition duration-300">Properties</a>
+                <a href="#contact" class="text-gray-600 hover:text-[#B99B77] font-semibold transition duration-300">Contact</a>
+                <!-- Compare Icon (Placeholder, non-functional) -->
+                <a href="javascript:void(0);" class="text-gray-600 hover:text-[#B99B77] transition-colors duration-300 ml-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#B99B77]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default, toggled by JS) -->
+        <div id="mobile-menu" class="md:hidden mt-4 hidden bg-white rounded-b-xl shadow-lg mx-6">
+            <nav class="flex flex-col space-y-4 px-4 pb-4 pt-2">
+                <a href="#hero" class="text-gray-800 hover:text-[#B99B77] font-semibold transition duration-300 border-b pb-2">Home</a>
+                <a href="#about" class="text-gray-800 hover:text-[#B99B77] font-semibold transition duration-300 border-b pb-2">About Us</a>
+                <a href="#properties" class="text-gray-800 hover:text-[#B99B77] font-semibold transition duration-300 border-b pb-2">Properties</a>
+                <a href="#contact" class="text-gray-800 hover:text-[#B99B77] font-semibold transition duration-300 border-b pb-2">Contact</a>
+                <a href="javascript:void(0);" class="text-gray-800 hover:text-[#B99B77] font-semibold transition duration-300">Compare</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-background flex items-center justify-center text-center text-white h-screen relative pt-24 md:pt-0">
+        <div class="gradient-overlay"></div>
+        <div class="relative z-10 p-6 md:p-12 max-w-4xl mx-auto rounded-xl shadow-2xl bg-black bg-opacity-30 backdrop-blur-sm">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 drop-shadow-lg">
+                Discover Your Dream Home by the Sea
+            </h1>
+            <p class="text-lg md:text-xl mb-8 opacity-90">
+                Immerse yourself in unparalleled coastal living with Mermaid Homes.
+                Experience luxury, tranquility, and breathtaking ocean views.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#properties" class="mermaid-button-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+                    View Properties
+                </a>
+                <a href="#contact" class="bg-white text-[#B99B77] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="container mx-auto py-16 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mb-8">
+        <h2 class="text-4xl font-bold text-center mb-12 mermaid-gradient-text">About Mermaid Homes</h2>
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+                <p class="text-lg leading-relaxed mb-6">
+                    Mermaid Homes specializes in curating the finest coastal properties, offering an exclusive collection of residences that blend modern luxury with serene natural beauty. Our passion is to connect you with homes that are not just places to live, but havens where you can embrace the calming rhythm of the ocean.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    From sun-drenched villas to charming beach houses, each property in our portfolio is meticulously selected for its prime location, exceptional design, and breathtaking views. We are dedicated to providing a seamless and personalized experience, helping you find a home where every day feels like a vacation.
+                </p>
+            </div>
+            <div class="flex justify-center">
+                <img src="https://placehold.co/600x400/ECDCBF/FFFFFF?text=Luxury+Coastal+Home" alt="Luxury Coastal Home" class="rounded-lg shadow-xl w-full h-auto max-w-lg object-cover transform hover:scale-105 transition-transform duration-300">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section id="properties" class="container mx-auto py-16 px-6 md:px-12">
+        <h2 class="text-4xl font-bold text-center mb-12 mermaid-gradient-text">Featured Properties</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Property Card 1 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                <img src="https://placehold.co/600x400/B99B77/FFFFFF?text=Ocean+View+Villa" alt="Ocean View Villa" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#B99B77]">Ocean Serenity Villa</h3>
+                    <p class="text-gray-700 mb-4">
+                        A breathtaking villa with panoramic ocean views, private beach access, and luxurious amenities. Perfect for a tranquil escape.
+                    </p>
+                    <div class="flex justify-between items-center text-gray-600 text-sm mb-4">
+                        <span><strong class="text-lg text-gray-800">$2.5M</strong></span>
+                        <span>4 Beds | 5 Baths | 3,200 sqft</span>
+                    </div>
+                    <a href="#" class="mermaid-button-gradient text-white font-bold py-2 px-6 rounded-full inline-block text-sm">View Details</a>
+                </div>
+            </div>
+
+            <!-- Property Card 2 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                <img src="https://placehold.co/600x400/ECDCBF/FFFFFF?text=Beachfront+Cottage" alt="Beachfront Cottage" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#B99B77]">Coral Reef Cottage</h3>
+                    <p class="text-gray-700 mb-4">
+                        Charming beachfront cottage, ideal for cozy getaways. Steps away from the sand and crystal-clear waters.
+                    </p>
+                    <div class="flex justify-between items-center text-gray-600 text-sm mb-4">
+                        <span><strong class="text-lg text-gray-800">$1.2M</strong></span>
+                        <span>2 Beds | 2 Baths | 1,800 sqft</span>
+                    </div>
+                    <a href="#" class="mermaid-button-gradient text-white font-bold py-2 px-6 rounded-full inline-block text-sm">View Details</a>
+                </div>
+            </div>
+
+            <!-- Property Card 3 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition-transform duration-300 cursor-pointer">
+                <img src="https://placehold.co/600x400/B99B77/FFFFFF?text=Cliffside+Estate" alt="Cliffside Estate" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#B99B77]">Azure Cliffside Estate</h3>
+                    <p class="text-gray-700 mb-4">
+                        A grand estate perched on a cliff, offering unparalleled privacy and majestic views of the open sea.
+                    </p>
+                    <div class="flex justify-between items-center text-gray-600 text-sm mb-4">
+                        <span><strong class="text-lg text-gray-800">$3.8M</strong></span>
+                        <span>5 Beds | 6 Baths | 4,500 sqft</span>
+                    </div>
+                    <a href="#" class="mermaid-button-gradient text-white font-bold py-2 px-6 rounded-full inline-block text-sm">View Details</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto py-16 px-6 md:px-12 bg-white rounded-xl shadow-lg mt-8 mb-8">
+        <h2 class="text-4xl font-bold text-center mb-12 mermaid-gradient-text">Contact Us</h2>
+        <div class="grid md:grid-cols-2 gap-10">
+            <div>
+                <p class="text-lg leading-relaxed mb-6">
+                    Ready to find your perfect coastal retreat? Our team is here to assist you. Fill out the form below or reach out to us directly.
+                </p>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 mr-3 text-[#B99B77]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684L10.5 9.87a1 1 0 00.54.54l3.125 1.762c.424.239.69.704.69 1.182V19a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path></svg>
+                        <a href="tel:+1234567890" class="hover:underline">+1 (234) 567-890</a>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 mr-3 text-[#B99B77]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.94 5.29a2 2 0 002.12 0L21 8m-10 4v6m4-6v6"></path></svg>
+                        <a href="mailto:info@mermaidhomes.com" class="hover:underline">info@mermaidhomes.com</a>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 mr-3 text-[#B99B77]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        123 Ocean Drive, Coastal City, CA 90210
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#ECDCBF] focus:border-transparent transition-all duration-200" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#ECDCBF] focus:border-transparent transition-all duration-200" placeholder="your.email@example.com">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message</label>
+                        <textarea id="message" name="message" rows="5" class="shadow-sm appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-[#ECDCBF] focus:border-transparent transition-all duration-200 resize-y" placeholder="Your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="mermaid-button-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 w-full md:w-auto">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#5D4037] text-white py-8 px-6 md:px-12 mt-8 rounded-t-xl">
+        <div class="container mx-auto text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="text-gray-300 hover:text-[#ECDCBF] transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.505 1.492-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22h7.994c4.434-.702 7.85-4.047 8.528-8.497A10 10 0 0022 12z" clip-rule="evenodd"></path></svg>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-[#ECDCBF] transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.44 2.06C9.9 2.06 7.69 3.01 6.1 4.59c-1.6 1.6-2.56 3.82-2.56 6.36C3.54 13.59 4.5 15.8 6.1 17.39c1.6 1.6 3.82 2.56 6.36 2.56 2.54 0 4.75-1.02 6.2-2.56 1.6-1.6 2.56-3.81 2.56-6.36 0-2.54-1.02-4.75-2.56-6.2C17.18 3.01 14.97 2.06 12.44 2.06zm-5.7 8.35L15.3 11.2c-.37 3.32-2.82 5.9-6.07 5.9-3.26 0-5.83-2.58-6.07-5.9zM12.44 3.51a8.67 8.67 0 0 1 6.11 2.54c1.6 1.6 2.56 3.82 2.56 6.36a8.67 8.67 0 0 1-2.56 6.1c-1.6 1.6-3.82 2.56-6.36 2.56a8.67 8.67 0 0 1-6.1-2.56c-1.6-1.6-2.56-3.82-2.56-6.36a8.67 8.67 0 0 1 2.56-6.1A8.67 8.67 0 0 1 12.44 3.51z" clip-rule="evenodd"></path></svg>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-[#ECDCBF] transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.505 1.492-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22h7.994c4.434-.702 7.85-4.047 8.528-8.497A10 10 0 0022 12z" clip-rule="evenodd"></path></svg>
+                </a>
+            </div>
+            <p class="text-gray-400">&copy; 2025 Mermaid Homes. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Check if the href is just "#" or empty after the hash
+                const href = this.getAttribute('href');
+                if (href === '#' || href.substring(1).trim() === '') {
+                    // Prevent default behavior only if it's a problematic hash
+                    e.preventDefault();
+                    // Optionally, you can scroll to the top or a default section
+                    document.querySelector('#hero').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    return; // Exit the function to prevent further execution
+                }
+
+                e.preventDefault();
+
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Toggle mobile menu visibility
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside (optional, but good UX)
+        document.addEventListener('click', function(event) {
+            const isClickInside = mobileMenu.contains(event.target) || mobileMenuButton.contains(event.target);
+            if (!isClickInside && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
